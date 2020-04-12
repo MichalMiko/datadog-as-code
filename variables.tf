@@ -1,6 +1,6 @@
-variable "DATADOG_API_KEY" {
+variable "datadog_api_key" {
 }
 
-variable "DATADOG_APP_KEY" {
+variable "datadog_app_key" {
 }
 

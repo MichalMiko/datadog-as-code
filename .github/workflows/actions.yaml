@@ -10,8 +10,8 @@ on: push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 env:
-  TF_VAR_DATADOG_API_KEY: ${{ secrets.datadog_api_key }}
-  TF_VAR_DATADOG_APP_KEY: ${{ secrets.datadog_app_key }}
+  TF_VAR_datadog_api_key: ${{ secrets.datadog_api_key }}
+  TF_VAR_datadog_app_key: ${{ secrets.datadog_app_key }}
   # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -41,6 +41,3 @@ jobs:
         with:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'plan'
-        env:
-          TF_VAR_DATADOG_API_KEY: ${{ secrets.datadog_api_key }}
-          TF_VAR_DATADOG_APP_KEY: ${{ secrets.datadog_app_key }}
