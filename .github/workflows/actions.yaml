@@ -15,9 +15,13 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform CI'
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        run: |
-          pwd
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Terraform Format'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'fmt'
