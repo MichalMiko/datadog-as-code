@@ -14,9 +14,9 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     steps:
-    - shell: bash
-      env:
-        TF_VAR_DATADOG_API_KEY = ${{ secrets.datadog_api_key }}
-        TF_VAR_DATADOG_APP_KEY = ${{ secrets.datadog_app_key }}
-      run: |
-        terraform version
+      - shell: bash
+        env:
+          TF_VAR_DATADOG_API_KEY = ${{ secrets.datadog_api_key }}
+          TF_VAR_DATADOG_APP_KEY = ${{ secrets.datadog_app_key }}
+        run: |
+          terraform version
