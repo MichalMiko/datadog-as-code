@@ -1,0 +1,39 @@
+name: CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  pull_request:
+    types: [labeled]
+# on:
+  # push:
+  #   branches: [ master ]
+env:
+  TF_VAR_datadog_api_key: ${{ secrets.datadog_api_key }}
+  TF_VAR_datadog_app_key: ${{ secrets.datadog_app_key }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  terraform:
+    name: 'Terraform CD'
+    if: contains(github.event.pull_request.labels.*.name, 'terraform_apply')
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'init'
+      - name: 'Terraform Validate'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'validate'
+      - name: 'Terraform Apply'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'apply'
+          tf_actions_comment: true
