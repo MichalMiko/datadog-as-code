@@ -16,6 +16,7 @@ env:
 jobs:
   terraform:
     name: 'Terraform CD'
+    if: contains(github.event.pull_request.labels.*.name, 'terraform_apply')
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
