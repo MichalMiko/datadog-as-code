@@ -12,7 +12,7 @@ on: #push
 env:
   TF_VAR_datadog_api_key: ${{ secrets.datadog_api_key }}
   TF_VAR_datadog_app_key: ${{ secrets.datadog_app_key }}
-  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   terraform:
